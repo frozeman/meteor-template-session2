@@ -15,7 +15,7 @@ Package.on_use(function (api) {
 
 Package.on_test(function (api) {
 
-    api.use('template-session');
+    api.use('template-session2');
     api.use('tinytest');
     api.add_files('TemplateSession_tests.js', 'client');
 
