@@ -18,26 +18,13 @@ The `TemplateSession` provides reactive variables for template instances.
 Note! The reactive variables, are not preserved over hot code reloads, like the Meteor `Session` object does.
 
 
-To set and get properties does as follow:
+To set and get properties inside template helpers, hooks and events do as follow:
 
     // set a property
     TemplateSession.set('myProperty', 'myValue');
 
     // to get it inside a helper, or callback
     TemplateSession.get('myProperty');
-
-
-When you want to to get/set TemplateSession from within a event use the following syntax:
-
-    // set a property
-    'click button': function(e, template){
-        TemplateSession.set(template, 'myProperty', 'myValue');
-    }
-
-    // to get it inside a helper, or callback
-    'click button': function(e, template){
-        TemplateSession.get(template, 'myProperty');
-    }
 
 
 API Docs
