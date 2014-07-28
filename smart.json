@@ -3,7 +3,7 @@
   "description": "The `TemplateSession` provides reactive variables for template instances.",
   "homepage": "https://github.com/frozeman/meteor-template-session2",
   "author": "Fabian Vogelsteller (http://frozeman.de)",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "git": "https://github.com/frozeman/meteor-template-session2.git",
   "packages": {}
 }

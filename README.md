@@ -1,7 +1,7 @@
 The `TemplateSession` provides reactive variables for template instances.
 The `TemplateSession` object makes reactive property transfers between helpers and callbacks possible.
 
-! Requires at least meteor version 0.8.3-rc3
+! Requires at least meteor version 0.8.3-rc5
 
 <!-- Demo: http://templatesession2demo.meteor.com -->
 
