@@ -35,7 +35,7 @@ TemplateSession = {
     **/
     _getTemplateInstance: function(key, value){
         var template = null;
-
+console.log(Blaze.getCurrentView());
         try {
             template = Blaze.getCurrentView()._templateInstance;
         } catch(e) {
@@ -66,11 +66,10 @@ TemplateSession = {
     When get is called we create a `Deps.Dependency.depend()` for that key in the store.
 
     @method get
-    @param {Object} template         the current template instance
     @param {String} propertyName     The name of the property you want to get. Should consist of the `'templateName->myPropertyName'`
     @return {Mixed} The stored value.
     **/
-    get: function (template, propertyName) {
+    get: function (propertyName) {
         var values = TemplateSession._getTemplateInstance(propertyName);
 
         return values.template._templateSession[values.key].get();
@@ -85,7 +84,7 @@ TemplateSession = {
     @param {String|Object} value     If the value is a string with `rerun`, then it will be rerun all dependent functions where get `TemplateInstance.get()` was called.
     @return undefined
     **/
-    set: function (template, propertyName, value) {
+    set: function (propertyName, value) {
         var values = TemplateSession._getTemplateInstance(propertyName, value);
 
         values.template._templateSession[values.key].set(values.value);
