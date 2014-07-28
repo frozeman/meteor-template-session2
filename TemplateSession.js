@@ -35,7 +35,7 @@ TemplateSession = {
     **/
     _getTemplateInstance: function(key, value){
         var template = null;
-console.log(Blaze.getCurrentView());
+
         try {
             template = Blaze.getCurrentView()._templateInstance;
         } catch(e) {
