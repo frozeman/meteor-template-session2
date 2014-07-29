@@ -29,17 +29,25 @@ TemplateSession = {
     Gets the current template instance and returns also the correct keys and values.
 
     @method _getTemplateInstance
+    @param {Object} givenTemplate            the current template
     @param {String} key                 the given key
     @param {Mixed} value                the value to set
     @return {String} The generated key name.
     **/
-    _getTemplateInstance: function(key, value){
+    _getTemplateInstance: function(givenTemplate, key, value){
         var template = null;
 
         try {
             template = Blaze.getCurrentView();
+            value = key;
+            key = givenTemplate;
+
         } catch(e) {
-            throw new Error('TemplateSession works only from withing template helpers, hooks or events');
+            // if it couldn't get the template, check if a template instance was given.
+            if(givenTemplate.hasOwnProperty('__view__'))
+                template = givenTemplate.__view__;
+            else
+                throw new Error('TemplateSession works only from withing template helpers, hooks or events');
         }
 
         // make sure the template session object exists
@@ -65,11 +73,12 @@ TemplateSession = {
     When get is called we create a `Deps.Dependency.depend()` for that key in the store.
 
     @method get
+    @param {Object} template            the current template
     @param {String} propertyName     The name of the property you want to get. Should consist of the `'templateName->myPropertyName'`
     @return {Mixed} The stored value.
     **/
-    get: function (propertyName) {
-        var values = TemplateSession._getTemplateInstance(propertyName);
+    get: function (template, propertyName) {
+        var values = TemplateSession._getTemplateInstance(template, propertyName);
 
         return values.template._templateSession[values.key].get();
     },
@@ -79,12 +88,13 @@ TemplateSession = {
     When set is called every depending reactive function where `TemplateSession.get()` with the same key is called will rerun.
 
     @method set
+    @param {Object} template            the current template
     @param {String} propertyName     The name of the property you want to get. Should consist of the `'templateName->myPropertyName'`
     @param {String|Object} value     If the value is a string with `rerun`, then it will be rerun all dependent functions where get `TemplateInstance.get()` was called.
     @return undefined
     **/
-    set: function (propertyName, value) {
-        var values = TemplateSession._getTemplateInstance(propertyName, value);
+    set: function (template, propertyName, value) {
+        var values = TemplateSession._getTemplateInstance(template, propertyName, value);
 
         values.template._templateSession[values.key].set(values.value);
     }

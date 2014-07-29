@@ -26,6 +26,22 @@ To set and get properties inside template helpers, hooks and events do as follow
     // to get it inside a helper, or callback
     TemplateSession.get('myProperty');
 
+In case you want to use the TemplateSession inside a callback where you also have access to the template instance, you can pass the template instance as the first object, as seen below:
+
+	'click .do-something': function(e, template){
+
+		Posts.insert({
+			...
+		}, function(error){
+			if(!error)
+				TemplateSession.set(template, 'myVariable', 'myValueToSet');
+			else
+				alert(error);
+		});
+
+
+	}
+
 
 API Docs
 ========
