@@ -37,7 +37,7 @@ TemplateSession = {
         var template = null;
 
         try {
-            template = Blaze.getCurrentView()._templateInstance;
+            template = Blaze.getCurrentView();
         } catch(e) {
             throw new Error('TemplateSession works only from withing template helpers, hooks or events');
         }
@@ -47,9 +47,8 @@ TemplateSession = {
             template._templateSession = {};
 
         // create Reactive var, if not existing
-        if(!template._templateSession[key])
+        if(template && !template._templateSession[key])
             template._templateSession[key] = new Blaze.ReactiveVar(value);
-
 
         // build the keyname
         return {
