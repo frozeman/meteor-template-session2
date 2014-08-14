@@ -50,6 +50,11 @@ TemplateSession = {
                 throw new Error('TemplateSession works only from withing template helpers, hooks or events');
         }
 
+        // move on view up if its a #with
+        while(template.kind === 'Spacebars_with' && template.parentView) {
+            template = template.parentView;
+        }
+
         // make sure the template session object exists
         if(template && !template._templateSession)
             template._templateSession = {};
@@ -57,6 +62,7 @@ TemplateSession = {
         // create Reactive var, if not existing
         if(template && !template._templateSession[key])
             template._templateSession[key] = new Blaze.ReactiveVar(value);
+
 
         // build the keyname
         return {
