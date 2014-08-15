@@ -7,7 +7,7 @@ Package.describe({
 
 Package.on_use(function (api) {
 
-	api.versionsFrom('METEOR-CORE@0.9.0');
+	// api.versionsFrom('METEOR-CORE@0.9.0');
 
     // third party
     api.use('underscore', 'client');
