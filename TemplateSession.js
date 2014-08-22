@@ -49,9 +49,8 @@ TemplateSession = {
             else
                 throw new Error('TemplateSession works only from withing template helpers, hooks or events');
         }
-
         // move on view up if its a #with, #if or #unless
-        while((template.kind === 'Spacebars_with' || template.kind === 'if' || template.kind === 'unless') && template.parentView) {
+        while(template.kind.indexOf('Template.') === -1 && template.parentView) {
             template = template.parentView;
         }
 
