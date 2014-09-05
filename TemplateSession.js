@@ -38,7 +38,7 @@ TemplateSession = {
         var template = null;
 
         try {
-            template = Blaze.getCurrentView();
+            template = Blaze.currentView;
             value = key;
             key = givenTemplate;
 
@@ -50,7 +50,7 @@ TemplateSession = {
                 throw new Error('TemplateSession works only from withing template helpers, hooks or events');
         }
         // move on view up if its a #with, #if or #unless
-        while(template.kind.indexOf('Template.') === -1 && template.parentView) {
+        while(template.name.indexOf('Template.') === -1 && template.parentView) {
             template = template.parentView;
         }
 
@@ -65,7 +65,7 @@ TemplateSession = {
 
         // build the keyname
         return {
-            key: key, 
+            key: key,
             value: value,
             template: template
         };
