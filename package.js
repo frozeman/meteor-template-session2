@@ -1,15 +1,16 @@
 Package.describe({
     name: "mrt:template-session2",
     summary: "The TemplateSession provides reactive variables for template instances.",
-    version: "0.3.8",
+    version: "0.3.9",
     git: "https://github.com/frozeman/meteor-template-session2.git"
 });
 
 
 Package.onUse(function (api) {
-    api.versionsFrom('METEOR@0.9.0');
+    api.versionsFrom('METEOR@0.9.1');
 
     // core
+    api.use('reactive-var', 'client');
     api.use('underscore', 'client');
 
     api.export('TemplateSession');

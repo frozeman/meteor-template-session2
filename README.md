@@ -1,7 +1,9 @@
+*Note* This package is deprecated please use the `frozeman:template-var` package instead.
+
 The `TemplateSession` provides reactive variables for template instances.
 The `TemplateSession` object makes reactive property transfers between helpers and callbacks possible.
 
-! Requires at least meteor version 0.9.0
+! Requires at least meteor version 0.9.1
 
 <!-- Demo: http://templatesession2demo.meteor.com -->
 

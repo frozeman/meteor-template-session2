@@ -38,14 +38,14 @@ TemplateSession = {
         var template = null;
 
         try {
-            template = Blaze.currentView;
+            template = Template.instance().view;
             value = key;
             key = givenTemplate;
 
         } catch(e) {
             // if it couldn't get the template, check if a template instance was given.
-            if(givenTemplate.hasOwnProperty('__view__'))
-                template = givenTemplate.__view__;
+            if(givenTemplate.hasOwnProperty('view'))
+                template = givenTemplate.view;
             else
                 throw new Error('TemplateSession works only from withing template helpers, hooks or events');
         }
@@ -60,7 +60,7 @@ TemplateSession = {
 
         // create Reactive var, if not existing
         if(template && !template._templateSession[key])
-            template._templateSession[key] = new Blaze.ReactiveVar(value);
+            template._templateSession[key] = new ReactiveVar(value);
 
 
         // build the keyname
@@ -75,11 +75,11 @@ TemplateSession = {
     // PUBLIC
 
     /**
-    When get is called we create a `Deps.Dependency.depend()` for that key in the store.
+    When get is called we use the ReactiveVar.get from the template instance.
 
     @method get
     @param {Object} template            the current template
-    @param {String} propertyName     The name of the property you want to get. Should consist of the `'templateName->myPropertyName'`
+    @param {String} propertyName     The name of the property you want to get. Should consist of the `'myPropertyName'`
     @return {Mixed} The stored value.
     **/
     get: function (template, propertyName) {
